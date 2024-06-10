@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
             themeMode: ThemeMode.system,
             title: 'Flutter Demo',
             theme: ThemeData(
+              appBarTheme: const AppBarTheme(scrolledUnderElevation: 0),
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),

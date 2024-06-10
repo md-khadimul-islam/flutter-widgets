@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
@@ -33,9 +35,65 @@ class _HomeScreenState extends State<HomeScreen> {
               const Gap(20),
               animatedAlignWidget(),
               const Gap(20),
+              backDropFilterWidget(),
+              const Gap(40),
+              baseLineWidget(),
+              const Gap(40),
+              chipWidget()
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Chip chipWidget() {
+    return const Chip(
+      avatar: Icon(Icons.add),
+      label: Text('Aaron Burr'),
+    );
+  }
+
+  Baseline baseLineWidget() {
+    return Baseline(
+      baseline: 60,
+      baselineType: TextBaseline.alphabetic,
+      child:
+          Text('This is Baseline', style: TextFontStyle.headline20OpenSansBold),
+    );
+  }
+
+  SizedBox backDropFilterWidget() {
+    return SizedBox(
+      height: 400.h,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.network(
+            'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+            fit: BoxFit.cover,
+          ),
+          Center(
+            child: ClipRect(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+                child: Container(
+                  width: 300.w,
+                  height: 220.h,
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.2),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Frosted Glass Effect',
+                      style: TextFontStyle.headline20OpenSansBold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
